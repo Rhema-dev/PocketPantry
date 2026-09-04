@@ -112,7 +112,7 @@ export default function SettingsScreen() {
         ) : null}
 
         <Text variant="caption" tone="inkFaint" style={styles.footer}>
-          PantryPilot stores everything on this device. No account, no server, no
+          PocketPantry stores everything on this device. No account, no server, no
           network calls.
         </Text>
       </ScrollView>

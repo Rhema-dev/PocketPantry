@@ -6,7 +6,7 @@
  * pretend to be one: it is twenty assertions that fail loudly in the console
  * if the one piece of real logic in the app breaks.
  *
- * The reason this exists at all: everything else in PantryPilot is visible on
+ * The reason this exists at all: everything else in PocketPantry is visible on
  * screen, so a mistake shows up immediately. Date arithmetic is the one part
  * that can be quietly wrong in one time zone and right in another.
  */

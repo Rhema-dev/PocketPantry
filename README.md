@@ -1,4 +1,4 @@
-# PantryPilot
+# PocketPantry
 
 A household pantry and grocery expiration tracker. Everything lives on the
 device: no account, no server, no network calls.

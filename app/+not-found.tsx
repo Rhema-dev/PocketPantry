@@ -20,7 +20,7 @@ export default function NotFoundScreen() {
       <EmptyState
         glyph="🧭"
         title="No screen here"
-        body="That link does not point at anything in PantryPilot."
+        body="That link does not point at anything in PocketPantry."
         actionLabel="Go to the pantry"
         onAction={() => router.replace('/')}
       />

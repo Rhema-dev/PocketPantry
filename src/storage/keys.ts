@@ -13,7 +13,7 @@
  * fall back instead of destroying the pantry.
  */
 
-export const STORAGE_NAMESPACE = 'pantrypilot';
+export const STORAGE_NAMESPACE = 'PocketPantry';
 
 export const StorageKeys = {
   pantry: `${STORAGE_NAMESPACE}/v1/pantry`,

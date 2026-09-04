@@ -2,7 +2,7 @@
  * src/theme/tokens.ts
  *
  * One source of truth for every colour, space, radius and type size in
- * PantryPilot. Nothing in the app is allowed to hard code a hex value or a
+ * PocketPantry. Nothing in the app is allowed to hard code a hex value or a
  * magic number: components import from here.
  *
  * Why a plain object and not a theming library: the app has one theme. A
