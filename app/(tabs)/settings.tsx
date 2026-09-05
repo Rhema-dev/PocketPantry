@@ -13,6 +13,7 @@
 import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -23,7 +24,7 @@ import { Text } from '@/components/ui/Text';
 import { buildSeedItems } from '@/lib/seed';
 import { usePantryCounts, usePantryDispatch, usePantryState } from '@/hooks/usePantry';
 import { useResetPantry } from '@/state/PantryProvider';
-import { space } from '@/theme/tokens';
+import { colors, radius, space } from '@/theme/tokens';
 
 const WINDOW_OPTIONS = [2, 3, 5, 7, 14];
 
@@ -37,8 +38,15 @@ export default function SettingsScreen() {
   const [confirmReset, setConfirmReset] = useState(false);
 
   return (
-    <Screen edges={{ bottom: false }}>
+    <Screen edges={{ top: true, bottom: false }}>
       <ScrollView contentContainerStyle={styles.scroll}>
+        <View style={styles.header}>
+          <View style={styles.headerMark}><Ionicons name="options" size={20} color={colors.brand} /></View>
+          <View style={styles.headerCopy}>
+            <Text variant="display">Kitchen setup</Text>
+            <Text variant="body" tone="inkMuted">Tune your pantry to the way you cook.</Text>
+          </View>
+        </View>
         <Card>
           <Text variant="heading">Expiring soon window</Text>
           <Text variant="body" tone="inkMuted" style={styles.body}>
@@ -135,6 +143,9 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   scroll: { padding: space.lg, gap: space.lg, paddingBottom: space.xxxl },
+  header: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.sm },
+  headerMark: { width: 44, height: 44, borderRadius: radius.lg, backgroundColor: colors.brandWash, alignItems: 'center', justifyContent: 'center' },
+  headerCopy: { flex: 1, gap: 2 },
   body: { marginTop: space.sm },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.md },
   button: { marginTop: space.lg, alignSelf: 'flex-start', paddingHorizontal: space.xl },

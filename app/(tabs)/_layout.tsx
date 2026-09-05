@@ -11,10 +11,10 @@
  */
 
 import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
-import { Text } from '@/components/ui/Text';
 import { usePantryCounts } from '@/hooks/usePantry';
-import { colors } from '@/theme/tokens';
+import { colors, radius } from '@/theme/tokens';
 
 export default function TabsLayout() {
   const counts = usePantryCounts();
@@ -23,12 +23,19 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: colors.bg },
-        headerShadowVisible: false,
-        headerTitleStyle: { color: colors.ink, fontSize: 17, fontWeight: '600' },
+        headerShown: false,
         tabBarActiveTintColor: colors.brand,
         tabBarInactiveTintColor: colors.inkFaint,
-        tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '700', marginTop: 2 },
+        tabBarStyle: {
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
+          borderTopWidth: 1,
+          height: 68,
+          paddingTop: 7,
+          paddingBottom: 8,
+        },
+        tabBarItemStyle: { borderRadius: radius.md },
         sceneStyle: { backgroundColor: colors.bg },
       }}
     >
@@ -36,7 +43,9 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Pantry',
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>🧺</Text>,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'basket' : 'basket-outline'} size={23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -45,14 +54,18 @@ export default function TabsLayout() {
           title: 'Expiring',
           tabBarBadge: urgent > 0 ? urgent : undefined,
           tabBarBadgeStyle: { backgroundColor: colors.expired },
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>⏳</Text>,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'timer' : 'timer-outline'} size={23} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>⚙️</Text>,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'options' : 'options-outline'} size={23} color={color} />
+          ),
         }}
       />
     </Tabs>

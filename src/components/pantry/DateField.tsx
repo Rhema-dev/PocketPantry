@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.md,
     borderRadius: radius.md,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.borderStrong,
     backgroundColor: colors.surface,
   },
   buttonError: { borderColor: colors.danger, backgroundColor: colors.dangerWash },

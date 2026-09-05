@@ -148,7 +148,7 @@ export function ItemForm({ form, categories, submitLabel, onSubmit, onCancel }: 
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  scroll: { padding: space.lg, gap: space.xl, paddingBottom: space.xxxl },
+  scroll: { padding: space.lg, gap: space.xl, paddingBottom: space.xxxl, backgroundColor: colors.bg },
   quantityBlock: { gap: space.sm },
   note: { minHeight: 88, paddingTop: space.sm, textAlignVertical: 'top' },
   footer: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     gap: space.md,
     padding: space.lg,
     borderTopWidth: 1,
-    borderTopColor: colors.border,
+    borderTopColor: colors.borderStrong,
     backgroundColor: colors.surface,
   },
   footerButton: { flex: 1 },

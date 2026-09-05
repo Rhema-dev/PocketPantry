@@ -16,6 +16,7 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 
@@ -37,7 +38,7 @@ import {
 } from '@/hooks/usePantry';
 import { stamps } from '@/state/pantryReducer';
 import { EMPTY_FILTER, type DecoratedItem, type ItemFilter } from '@/state/selectors';
-import { colors, space } from '@/theme/tokens';
+import { colors, radius, space } from '@/theme/tokens';
 
 export default function InventoryScreen() {
   const router = useRouter();
@@ -105,16 +106,26 @@ export default function InventoryScreen() {
   const searchFoundNothing = !pantryIsEmpty && visible.length === 0;
 
   return (
-    <Screen edges={{ bottom: false }}>
+    <Screen edges={{ top: true, bottom: false }}>
       <View style={styles.header}>
+        <View style={styles.eyebrow}>
+          <View style={styles.eyebrowDot} />
+          <Text variant="label" tone="brand">YOUR KITCHEN, AT A GLANCE</Text>
+        </View>
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
-            <Text variant="display">Pantry</Text>
-            <Text variant="caption" tone="inkMuted">
-              {counts.total} in stock · {counts.soon} due soon · {counts.expired} past date
-            </Text>
+            <Text variant="display">What’s on hand?</Text>
+            <Text variant="body" tone="inkMuted">Use what you have. Waste a little less.</Text>
           </View>
-          <Button label="Add" onPress={() => router.push('/item/new')} />
+          <Button label="+ Add item" onPress={() => router.push('/item/new')} />
+        </View>
+
+        <View style={styles.summary}>
+          <SummaryTile icon="leaf-outline" label="In stock" value={counts.total} tone="fresh" />
+          <View style={styles.summaryRule} />
+          <SummaryTile icon="time-outline" label="Use soon" value={counts.soon} tone="soon" />
+          <View style={styles.summaryRule} />
+          <SummaryTile icon="alert-circle-outline" label="Past date" value={counts.expired} tone="expired" />
         </View>
 
         <SearchBar value={query} onChange={setQuery} />
@@ -160,14 +171,37 @@ export default function InventoryScreen() {
   );
 }
 
+function SummaryTile({ icon, label, value, tone }: { icon: keyof typeof Ionicons.glyphMap; label: string; value: number; tone: 'fresh' | 'soon' | 'expired' }) {
+  return (
+    <View style={styles.summaryTile}>
+      <Ionicons name={icon} size={17} color={colors[tone]} />
+      <Text variant="title" tone={tone}>{value}</Text>
+      <Text variant="caption" tone="inkMuted">{label}</Text>
+    </View>
+  );
+}
+
 function Separator() {
   return <View style={styles.separator} />;
 }
 
 const styles = StyleSheet.create({
-  header: { paddingHorizontal: space.lg, paddingTop: space.sm, gap: space.md },
+  header: { paddingHorizontal: space.lg, paddingTop: space.lg, gap: space.md },
+  eyebrow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  eyebrowDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: colors.accent },
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  headerText: { gap: 2, flex: 1 },
-  list: { paddingTop: space.md, paddingBottom: space.xxxl },
-  separator: { height: StyleSheet.hairlineWidth, backgroundColor: colors.border, marginLeft: 72 },
+  headerText: { gap: 2, flex: 1, paddingRight: space.sm },
+  summary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingVertical: space.md,
+  },
+  summaryTile: { flex: 1, alignItems: 'center', gap: 1 },
+  summaryRule: { width: 1, height: 42, backgroundColor: colors.border },
+  list: { paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.xxxl },
+  separator: { height: space.sm },
 });

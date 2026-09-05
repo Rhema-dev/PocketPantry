@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
     borderWidth: 1,
   },
-  selected: { backgroundColor: colors.brand, borderColor: colors.brand },
-  unselected: { backgroundColor: colors.surface, borderColor: colors.border },
+  selected: { backgroundColor: colors.brand, borderColor: colors.brandDark },
+  unselected: { backgroundColor: colors.surface, borderColor: colors.borderStrong },
   pressed: { opacity: 0.75 },
 });

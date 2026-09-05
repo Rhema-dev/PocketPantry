@@ -16,6 +16,7 @@
 
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { StatusPill } from '@/components/pantry/StatusPill';
 import { Text } from '@/components/ui/Text';
@@ -70,9 +71,7 @@ function ItemRowBase({ entry, onPress, onToggleConsumed }: ItemRowProps) {
         onPress={() => onToggleConsumed(item.id)}
         style={({ pressed }) => [styles.check, consumed && styles.checkOn, pressed && styles.pressed]}
       >
-        <Text variant="label" tone={consumed ? 'inkInverse' : 'inkFaint'}>
-          {consumed ? '✓' : ''}
-        </Text>
+        {consumed ? <Ionicons name="checkmark" size={17} color={colors.inkInverse} /> : null}
       </Pressable>
     </Pressable>
   );
@@ -86,19 +85,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: space.md,
     paddingVertical: space.md,
-    paddingHorizontal: space.lg,
+    paddingHorizontal: space.md,
     backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.lg,
   },
   pressed: { opacity: 0.75 },
   glyphWrap: {
-    width: 42,
-    height: 42,
-    borderRadius: radius.md,
-    backgroundColor: colors.surfaceSunken,
+    width: 48,
+    height: 48,
+    borderRadius: radius.lg,
+    backgroundColor: colors.surfaceTint,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  glyph: { fontSize: 20 },
+  glyph: { fontSize: 23 },
   middle: { flex: 1, gap: 2 },
   pillRow: { marginTop: space.xs },
   struck: { textDecorationLine: 'line-through' },

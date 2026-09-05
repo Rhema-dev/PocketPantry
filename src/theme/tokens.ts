@@ -14,32 +14,36 @@
 
 export const colors = {
   // Surfaces
-  bg: '#FBFAF7',
-  surface: '#FFFFFF',
-  surfaceSunken: '#F3F2EE',
+  bg: '#F6F0E4',
+  surface: '#FFFDF7',
+  surfaceSunken: '#EDE5D5',
+  surfaceTint: '#F0E7D6',
 
   // Text
-  ink: '#1A1F1C',
-  inkMuted: '#5F6B64',
-  inkFaint: '#8E9A93',
-  inkInverse: '#FFFFFF',
+  ink: '#17372E',
+  inkMuted: '#52665E',
+  inkFaint: '#829087',
+  inkInverse: '#FFFDF7',
 
   // Lines
-  border: '#E4E8E5',
-  borderStrong: '#CBD4CE',
+  border: '#DED3BF',
+  borderStrong: '#BBAE96',
 
   // Brand
-  brand: '#2F6B4F',
-  brandDark: '#204C38',
-  brandWash: '#E8F1EC',
+  brand: '#1F5C48',
+  brandDark: '#123E31',
+  brandWash: '#DCEADF',
+  accent: '#DC5B3E',
+  accentDark: '#A63D29',
+  accentWash: '#F7DDD3',
 
   // Expiry status
-  fresh: '#2F6B4F',
-  freshWash: '#E8F1EC',
-  soon: '#B4741E',
-  soonWash: '#FBF1E2',
-  expired: '#9E3A2F',
-  expiredWash: '#FBEAE7',
+  fresh: '#1F6A4E',
+  freshWash: '#DCEADF',
+  soon: '#9A6118',
+  soonWash: '#F6E5B8',
+  expired: '#B13E2C',
+  expiredWash: '#F7DDD3',
   neutral: '#5F6B64',
   neutralWash: '#EFF1F0',
 
@@ -62,14 +66,15 @@ export const space = {
 
 export const radius = {
   sm: 8,
-  md: 12,
-  lg: 16,
+  md: 14,
+  lg: 22,
+  xl: 28,
   pill: 999,
 } as const;
 
 export const type = {
-  display: { fontSize: 28, lineHeight: 34, fontWeight: '700' },
-  title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
+  display: { fontSize: 34, lineHeight: 39, fontWeight: '700' },
+  title: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   heading: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
   body: { fontSize: 15, lineHeight: 21, fontWeight: '400' },
   bodyStrong: { fontSize: 15, lineHeight: 21, fontWeight: '600' },

@@ -22,7 +22,7 @@ import { Text } from '@/components/ui/Text';
 import { Screen } from '@/components/ui/Screen';
 import { useCategories, usePantryDispatch, usePantryState } from '@/hooks/usePantry';
 import { stamps } from '@/state/pantryReducer';
-import { colors, space } from '@/theme/tokens';
+import { colors, radius, space } from '@/theme/tokens';
 import type { Category } from '@/types/pantry';
 
 function lastGlyph(value: string): string {
@@ -201,7 +201,7 @@ export default function CategoriesScreen() {
 
 const styles = StyleSheet.create({
   list: { paddingBottom: space.xxxl },
-  form: { padding: space.lg, gap: space.md },
+  form: { margin: space.lg, padding: space.lg, gap: space.md, backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border },
   formRow: { flexDirection: 'row', alignItems: 'flex-end', gap: space.md },
   emojiInput: { width: 72, textAlign: 'center', fontSize: 20 },
   addButton: { flex: 1 },
@@ -211,13 +211,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.md,
-    paddingHorizontal: space.lg,
+    marginHorizontal: space.lg,
+    paddingHorizontal: space.md,
     paddingVertical: space.md,
     backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   rowText: { flex: 1, gap: 2 },
   rowActions: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   rowAction: { minHeight: 44, justifyContent: 'center', paddingHorizontal: space.xs },
   glyph: { fontSize: 22 },
-  separator: { height: StyleSheet.hairlineWidth, backgroundColor: colors.border },
+  separator: { height: space.sm },
 });

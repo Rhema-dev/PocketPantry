@@ -26,7 +26,7 @@ export interface ButtonProps {
 }
 
 const BACKGROUND: Record<ButtonVariant, string> = {
-  primary: colors.brand,
+  primary: colors.accent,
   secondary: colors.surface,
   ghost: 'transparent',
   danger: colors.dangerWash,
@@ -63,6 +63,7 @@ export function Button({
         styles.base,
         { backgroundColor: BACKGROUND[variant] },
         variant === 'secondary' && styles.bordered,
+        variant === 'primary' && styles.primary,
         fullWidth && styles.fullWidth,
         pressed && !isDisabled && styles.pressed,
         isDisabled && styles.disabled,
@@ -86,11 +87,18 @@ const styles = StyleSheet.create({
   base: {
     minHeight: HIT_SIZE,
     paddingHorizontal: space.lg,
-    borderRadius: radius.md,
+    borderRadius: radius.pill,
     alignItems: 'center',
     justifyContent: 'center',
   },
   bordered: { borderWidth: 1, borderColor: colors.border },
+  primary: {
+    shadowColor: colors.accentDark,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 2,
+  },
   fullWidth: { alignSelf: 'stretch' },
   content: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   pressed: { opacity: 0.82 },

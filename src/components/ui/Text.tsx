@@ -8,7 +8,7 @@
  * and no screen can invent a fourteenth font size at two in the morning.
  */
 
-import { Text as RNText, type TextProps as RNTextProps, StyleSheet } from 'react-native';
+import { Platform, Text as RNText, type TextProps as RNTextProps, StyleSheet } from 'react-native';
 
 import { colors, type, type ColorToken, type TypeToken } from '@/theme/tokens';
 
@@ -29,6 +29,9 @@ export function Text({ variant = 'body', tone = 'ink', style, ...rest }: TextPro
           lineHeight: preset.lineHeight,
           fontWeight: preset.fontWeight,
           color: colors[tone],
+          fontFamily: variant === 'display' || variant === 'title'
+            ? Platform.select({ ios: 'Georgia', android: 'serif', web: 'Georgia, serif' })
+            : Platform.select({ ios: 'Avenir Next', android: 'sans-serif', web: 'system-ui, sans-serif' }),
         },
         style,
       ]}

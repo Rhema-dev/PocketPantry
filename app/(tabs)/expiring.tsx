@@ -12,6 +12,7 @@
 import { useCallback, useMemo } from 'react';
 import { SectionList, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 import { ItemRow } from '@/components/pantry/ItemRow';
 import { EmptyState } from '@/components/ui/States';
@@ -24,7 +25,7 @@ import {
 } from '@/hooks/usePantry';
 import { stamps } from '@/state/pantryReducer';
 import type { DecoratedItem } from '@/state/selectors';
-import { colors, space } from '@/theme/tokens';
+import { colors, radius, space } from '@/theme/tokens';
 
 export default function ExpiringScreen() {
   const router = useRouter();
@@ -52,7 +53,7 @@ export default function ExpiringScreen() {
 
   if (populated.length === 0) {
     return (
-      <Screen>
+      <Screen edges={{ top: true, bottom: true }}>
         <EmptyState
           glyph="✅"
           title="Nothing is about to go off"
@@ -63,7 +64,7 @@ export default function ExpiringScreen() {
   }
 
   return (
-    <Screen edges={{ bottom: false }}>
+    <Screen edges={{ top: true, bottom: false }}>
       <SectionList
         sections={populated}
         keyExtractor={(entry: DecoratedItem) => entry.item.id}
@@ -80,6 +81,17 @@ export default function ExpiringScreen() {
             </Text>
           </View>
         )}
+        ListHeaderComponent={
+          <View style={styles.hero}>
+            <View style={styles.heroIcon}>
+              <Ionicons name="sparkles" size={20} color={colors.soon} />
+            </View>
+            <View style={styles.heroText}>
+              <Text variant="display">Use these next</Text>
+              <Text variant="body" tone="inkMuted">A small nudge toward a waste-free kitchen.</Text>
+            </View>
+          </View>
+        }
         ItemSeparatorComponent={Separator}
         stickySectionHeadersEnabled
         contentContainerStyle={styles.list}
@@ -93,14 +105,17 @@ function Separator() {
 }
 
 const styles = StyleSheet.create({
-  list: { paddingBottom: space.xxxl },
+  list: { paddingHorizontal: space.lg, paddingBottom: space.xxxl },
+  hero: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingTop: space.lg, paddingBottom: space.xl },
+  heroIcon: { width: 44, height: 44, borderRadius: radius.lg, backgroundColor: colors.soonWash, alignItems: 'center', justifyContent: 'center' },
+  heroText: { flex: 1, gap: 2 },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: space.lg,
-    paddingVertical: space.sm,
+    paddingHorizontal: 0,
+    paddingVertical: space.md,
     backgroundColor: colors.bg,
   },
-  separator: { height: StyleSheet.hairlineWidth, backgroundColor: colors.border, marginLeft: 72 },
+  separator: { height: space.sm },
 });

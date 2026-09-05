@@ -26,7 +26,7 @@ import { Text } from '@/components/ui/Text';
 import { formatDate, formatQuantity } from '@/lib/format';
 import { useItem, usePantryDispatch, usePantryState } from '@/hooks/usePantry';
 import { stamps } from '@/state/pantryReducer';
-import { colors, space } from '@/theme/tokens';
+import { colors, radius, space } from '@/theme/tokens';
 
 const LOCATION_LABEL = {
   pantry: 'Pantry',
@@ -82,7 +82,8 @@ export default function ItemDetailScreen() {
     <Screen edges={{ bottom: true }}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.head}>
-          <Text style={styles.glyph}>{category.emoji}</Text>
+          <View style={styles.glyphWrap}><Text style={styles.glyph}>{category.emoji}</Text></View>
+          <Text variant="label" tone="brand">PANTRY LABEL</Text>
           <Text variant="display">{item.name}</Text>
           <StatusPill expiry={expiry} expiresOn={item.expiresOn} />
         </View>
@@ -140,9 +141,10 @@ function Row({ label, value }: { label: string; value: string }) {
 
 const styles = StyleSheet.create({
   scroll: { padding: space.lg, gap: space.xl, paddingBottom: space.xxxl },
-  head: { gap: space.sm, alignItems: 'flex-start' },
-  glyph: { fontSize: 40 },
-  rows: { gap: space.md },
+  head: { gap: space.sm, alignItems: 'center', paddingVertical: space.lg },
+  glyphWrap: { width: 76, height: 76, borderRadius: radius.xl, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surfaceTint, borderWidth: 1, borderColor: colors.border },
+  glyph: { fontSize: 38 },
+  rows: { gap: space.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: radius.lg, padding: space.lg },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
